@@ -5,7 +5,12 @@
 AI autonomous penetration testing system (Go backend + Next.js frontend)
 
 
- Fork of [ARTEX by Autumn-27](https://github.com/Autumn-27) · English translation of the Chinese source · maintained publicly under AGPL-3.0
+Fork of [BaaRai/ARTEX](https://github.com/BaaRai/ARTEX), the English edition of
+[ARTEX by Autumn-27](https://github.com/Autumn-27) · AGPL-3.0.
+
+This fork builds its own container images at `ghcr.io/0xkaz/artex`.
+See [container publishing and setup](docs/container-publishing.md) for the first
+GitHub Actions run, private-package login, version pinning and local builds.
 
 </div>
 
@@ -77,7 +82,7 @@ Sync asset data directly from [ScopeSentry](https://github.com/Autumn-27/ScopeSe
 ### Option 1: one-click install script (recommended)
 
 ```bash
-git clone https://github.com/BaaRai/ARTEX.git
+git clone https://github.com/0xkaz/ARTEX.git
 cd ARTEX
 ./install.sh
 ```
@@ -92,10 +97,10 @@ Once installed, open **http://localhost:8787** (on first entry, `/setup` sets th
 ### Option 2: Docker Compose (manual)
 
 ```bash
-git clone https://github.com/BaaRai/ARTEX.git
+git clone https://github.com/0xkaz/ARTEX.git
 cd ARTEX
 cp .env.example .env          # set POSTGRES_PASSWORD, optionally ANTHROPIC_API_KEY
-docker compose up -d          # pulls the autumn27/artex image + postgres
+docker compose up -d          # pulls ghcr.io/0xkaz/artex + postgres
 # → http://localhost:8787
 ```
 
@@ -108,7 +113,7 @@ Legacy SSE servers usually establish the event stream with `GET /sse`, then rece
 
 ### Option 3: download prebuilt binaries (Releases)
 
-Download the zip for your platform from [Releases](https://github.com/BaaRai/ARTEX/releases); after extracting you get `artex` + `start.sh` (`start.bat` on Windows) + `skills/` + `config.example.json`:
+After publishing a version tag, download the zip for your platform from [this fork's Releases](https://github.com/0xkaz/ARTEX/releases); after extracting you get `artex` + `start.sh` (`start.bat` on Windows) + `skills/` + `config.example.json`:
 
 ```bash
 cp config.example.json config.json   # fill in the database connection
@@ -213,7 +218,7 @@ docker image prune -f          # clean up old images (optional)
 
 ### Option 4: prebuilt binaries (Releases)
 
-Download the new version's zip from [Releases](https://github.com/BaaRai/ARTEX/releases), stop the old process, then overwrite `artex` and `skills/` (keep your `config.json` and `data/`), and restart:
+Download the new version's zip from [this fork's Releases](https://github.com/0xkaz/ARTEX/releases), stop the old process, then overwrite `artex` and `skills/` (keep your `config.json` and `data/`), and restart:
 
 ```bash
 cp -r <extracted dir>/skills ./ && cp <extracted dir>/artex ./
